@@ -1,0 +1,19 @@
+:root {
+  --brand-red: #B00020;
+  --brand-white: #fff;
+  --brand-red-contrast: #fff;
+}
+
+body {
+  background: var(--brand-white);
+  color: #222;
+}
+
+.header, .navbar, .btn-primary, .badge {
+  background-color: var(--brand-red);
+  color: var(--brand-red-contrast);
+}
+
+a {
+  color: var(--brand-red);
+}
