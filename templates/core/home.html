@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Plum Med</title>
+    <title>Plus Medical Centre</title>
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -11,7 +11,7 @@
     <nav class="navbar header mb-4">
         <div class="container">
             <span class="navbar-brand mb-0 h1">
-                <img src="logo.png" alt="Logo" height="40" class="me-2">
+                <img src="{% static 'logo.png' %}" alt="Logo" height="40" class="me-2">
                 Plus Medical Centre
             </span>
         </div>
@@ -25,6 +25,5 @@
     </footer>
 </body>
 </html>
-git init
-git add .
-git commit -m "Initial commit"
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
