@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+from decouple import config
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'core',
+    'medstaff',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -68,7 +70,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'medstaff.middleware.MustChangePasswordMiddleware',
 ]
+
+
+
 
 ROOT_URLCONF = 'plusmed.urls'
 
@@ -87,6 +93,10 @@ TEMPLATES = [
         },
     },
 ]
+
+
+
+
 
 WSGI_APPLICATION = 'plusmed.wsgi.application'
 
@@ -137,5 +147,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Default passwords for initial department accounts
+DEFAULT_ADMIN_PASSWORD = "admin123"
+DEFAULT_FRONTDESK_PASSWORD = "frontdesk123"
+DEFAULT_LAB_PASSWORD = "lab123"
+DEFAULT_SCAN_PASSWORD = "scan123"
+DEFAULT_INVENTORY_PASSWORD = "inventory123"
+
 
 
