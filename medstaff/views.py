@@ -48,3 +48,34 @@ def scan_dashboard(request):
 @login_required
 def inventory_dashboard(request):
     return render(request, 'medstaff/inventory_dashboard.html')
+
+
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
+from django.contrib import messages
+
+def role_based_login(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+
+            # Send them to their dashboard based on group
+            if user.groups.filter(name='Admin').exists():
+                return redirect('admin_dashboard')
+            elif user.groups.filter(name='Frontdesk').exists():
+                return redirect('frontdesk_dashboard')
+            elif user.groups.filter(name='Lab').exists():
+                return redirect('lab_dashboard')
+            elif user.groups.filter(name='Scan').exists():
+                return redirect('scan_dashboard')
+            elif user.groups.filter(name='Inventory').exists():
+                return redirect('inventory_dashboard')
+            else:
+                messages.error(request, "User has no assigned group.")
+        else:
+            messages.error(request, "Invalid username or password.")
+
+    return render(request, "login.html")

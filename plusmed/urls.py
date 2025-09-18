@@ -38,3 +38,11 @@ urlpatterns = [
     path('scan-dashboard/', scan_dashboard, name='scan_dashboard'),
     path('inventory-dashboard/', inventory_dashboard, name='inventory_dashboard'),
 ]
+
+from medstaff.views import role_based_login
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', role_based_login, name='login'),
+    # ... your dashboards ...
+]
